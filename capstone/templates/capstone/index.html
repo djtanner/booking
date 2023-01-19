@@ -1,0 +1,55 @@
+{% extends "capstone/layout.html" %}
+{% load static %}
+
+{% block body %}
+{% block script %}
+<script src="{% static 'capstone/capstone.js' %}"></script>
+{% endblock %}
+
+<h1>Our Services</h1>
+
+<div class="card-deck">
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="card">
+        <img class="card-img-top" src="{% static '/capstone/cleaning.png' %}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Housekeeping</h5>
+          <p class="card-text">Our professionals will leave your home spotless.</p>
+          <a href="{% url 'home' %}" class="btn btn-primary" id="cleaning-btn">Book now</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card">
+        <img class="card-img-top" src="{% static '/capstone/pestcontrol.png' %}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Pest Control</h5>
+          <p class="card-text">Guaranteed to leave your home bug free.</p>
+          <p style="color:blue">Coming soon</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card">
+        <img class="card-img-top" src="{% static '/capstone/haircut.png' %}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Hair Care</h5>
+          <p class="card-text">Get a salon look right in the comfort of your own home.</p>
+          <p style="color:blue">Coming soon</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="card">
+        <img class="card-img-top" src="{% static '/capstone/babysit.png' %}" alt="Card image cap">
+        <div class="card-body">
+          <h5 class="card-title">Child Care</h5>
+          <p class="card-text">Book a trusted babysitter to take care of your family.</p>
+          <p style="color:blue">Coming soon</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

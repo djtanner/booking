@@ -1,0 +1,80 @@
+{% extends "capstone/layout.html" %}
+{% load static %}
+
+
+{% block body %}
+
+{{ request.user.id|json_script:"user_id" }}
+
+<h1>Book a cleaning</h1>
+
+<div id="duration-view">
+    <form id="cleaning-form-duration" onsubmit="getSchedule(event)" action="{% url 'schedule' %}" method="POST">
+        <label for="duration">How many hours would you like your cleaning?</label>
+        <select id="duration" name="duration" class="form-select">
+            <option value=""></option>
+            {% for duration in duration %}
+            <option value="{{ duration }}">{{ duration }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <button type="submit" name="submitduration" id="submitduration" class="btn btn-secondary"
+            value="next">Next</button>
+    </form>
+</div>
+
+
+
+
+<div id="schedule-view">
+
+    <div class="container">
+        <div class="row row-cols-3" id="sched-col">
+
+        </div>
+    </div>
+</div>
+
+
+
+<div id="workers-view">
+
+    <div class="container">
+        <div class="row row-cols-3" id="worker-col">
+
+        </div>
+    </div>
+</div>
+
+<div id="finalize">
+
+    {% if user.is_authenticated %}
+    <div id="checkout">
+
+    </div>
+    {%else%}
+    <div id="loginrequired"></div>
+    <p style="margin: 20px"> <a href="{% url 'login' %}">Please log in to complete your booking.</a> </p>
+    {% endif %}
+
+</div>
+
+
+
+
+<div class="clear"></div>
+<footer class="footer-copyright text-center text-black-50 py-3 fixed-bottom">
+    <div class="container">
+        <span class="text-muted">Booking details</span>
+    </div>
+</footer>
+
+
+
+{% block script %}
+<script src="{% static 'capstone/capstone.js' %}"></script>
+{% endblock %}
+
+
+
+{% endblock %}

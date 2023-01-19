@@ -1,0 +1,93 @@
+{% extends "capstone/layout.html" %}
+{% load static %}
+
+
+{% block body %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        openTab(event, 'Upcoming');
+
+    });
+</script>
+
+
+<!-- Tab links -->
+<div class="tab">
+    <button id="upcomingtab" class="tablinks" onclick="openTab(event, 'Upcoming')">Upcoming</button>
+    <button class="tablinks" onclick="openTab(event, 'History')">History</button>
+
+</div>
+
+<!-- Tab content -->
+<div id="Upcoming" class="tabcontent">
+    <h3>Upcoming Bookings</h3>
+    <div class="container">
+        <div class="row row-cols-4">
+            <div class="col gridlabel"> Start </div>
+            <div class="col gridlabel"> End </div>
+            <div class="col gridlabel"> Price AED </div>
+            <div class="col gridlabel"> Service Provider </div>
+
+
+            {% for booking in upcomingBookings %}
+
+            <div class="col"> {{booking.start}}</div>
+            <div class="col"> {{booking.end}}</div>
+            <div class="col"> {{booking.price}} AED </div>
+            <div class="col"> {{booking.worker.first_name}} {{booking.worker.last_name}} </div>
+
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div id="History" class="tabcontent">
+    <h3>Completed Bookings</h3>
+    <div class="container">
+        <div class="row row-cols-5">
+            <div class="col gridlabel"> Start </div>
+            <div class="col gridlabel"> End </div>
+            <div class="col gridlabel"> Price AED </div>
+            <div class="col gridlabel"> Service Provider </div>
+            <div class="col gridlabel"> Rating </div>
+
+
+            {% for booking in historyBookings %}
+
+            <div class="col"> {{booking.start}}</div>
+            <div class="col"> {{booking.end}}</div>
+            <div class="col"> {{booking.price}} AED </div>
+            <div class="col"> {{booking.worker.first_name}} {{booking.worker.last_name}} </div>
+            {% if booking.rating %}
+            <div class="col"> {{booking.rating}} </div>
+            {% endif %}
+            {% if not booking.rating %}
+            <div class="col"> <button class="btn btn-info" onclick="rate('{{booking.id}}')" id="r{{booking.id}}">
+                    Rate
+                </button></div>
+
+
+            {% endif %}
+
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+
+
+
+    {% block script %}
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            openTab(event, 'Upcoming');
+
+        });
+    </script>
+
+    <script src="{% static 'capstone/capstone.js' %}"></script>
+    {% endblock %}
+
+
+
+    {% endblock %}

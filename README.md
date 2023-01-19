@@ -1,4 +1,4 @@
-# capstone
+# Appointment Booking Web Application - capstone project
 
 The purpose of this web application is to allow users to book home services, utilizing Django and Javascript. Features include:
 
